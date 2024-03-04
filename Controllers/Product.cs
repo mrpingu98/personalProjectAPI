@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using personalProjectAPI.Domains;
+using personalProjectAPI.Interfaces;
 
 namespace personalProjectAPI.Controllers;
 
@@ -13,20 +15,29 @@ public class ProductController : ControllerBase
 
     private readonly ILogger<ProductController> _logger;
 
-    public ProductController(ILogger<ProductController> logger)
+    private readonly IProductHandler _productHandler;
+
+    public ProductController(ILogger<ProductController> logger, IProductHandler productHandler)
     {
         _logger = logger;
+        _productHandler = productHandler;
     }
 
+    //[HttpGet]
+    //public IEnumerable<WeatherForecast> TestOne()
+    //{
+    //    return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+    //    {
+    //        Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+    //        TemperatureC = Random.Shared.Next(-20, 55),
+    //        Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+    //    })
+    //    .ToArray();
+    //}
+
     [HttpGet]
-    public IEnumerable<WeatherForecast> TestOne()
+    public IEnumerable<Product> GetAllProducts()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+        return _productHandler.GetAllProducts;
     }
 }

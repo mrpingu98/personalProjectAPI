@@ -23,9 +23,15 @@
   <ItemGroup>
     <None Remove="Domains\" />
     <None Remove="DbContext\" />
+    <None Remove="Handlers\" />
+    <None Remove="Repositories\" />
+    <None Remove="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domains\" />
     <Folder Include="DbContext\" />
+    <Folder Include="Handlers\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 </Project>
