@@ -26,6 +26,7 @@
     <None Remove="Handlers\" />
     <None Remove="Repositories\" />
     <None Remove="Interfaces\" />
+    <None Remove="RequestsResponses\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domains\" />
@@ -33,5 +34,6 @@
     <Folder Include="Handlers\" />
     <Folder Include="Repositories\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="RequestsResponses\" />
   </ItemGroup>
 </Project>
