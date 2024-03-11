@@ -23,31 +23,50 @@ namespace personalProjectAPI.Repositories
 			return result; 
         }
 
-        public async Task AddProducts(ProductRequest productRequest)
+        public async Task AddProducts(AddProductRequest product)
         {
-			var product = new Product
+			var newProduct = new Product
 			{
-				Name = productRequest.Name,
-				Description = productRequest.Description,
-				Price = productRequest.Price
+				Name = product.Name,
+				Description = product.Description,
+				Price = product.Price
 			};
 
-			_dbContext.Product.Add(product);
+			_dbContext.Product.Add(newProduct);
 			await _dbContext.SaveChangesAsync();
         }
 
-        public async Task EditProducts(string productName)
+        public async Task EditProducts(EditProductRequest product)
         {
-            var productToUpdate = _dbContext.Product.FirstOrDefault(product => product.Name == productName);
-			if (productToUpdate != null)
+            var productToUpdate = _dbContext.Product.FirstOrDefault(item => item.Name == product.Name);
+            //have use FirstOrDefault as this will only return one product
+            //if you use where, will return a list of products
+            if (productToUpdate != null)
 			{
-                productToUpdate.Name = "testingPut";
-			}
+				if (!string.IsNullOrEmpty(product.NewName))
+				{
+                    productToUpdate.Name = product.NewName;
+                }
+
+                if (!string.IsNullOrEmpty(product.Description))
+                {
+                    productToUpdate.Description = product.Description;
+                }
+
+                if (!string.IsNullOrEmpty(product.ImageUrl))
+                {
+                    productToUpdate.ImageUrl = product.ImageUrl;
+                }
+
+                if (product.Price.HasValue)
+                {
+                    productToUpdate.Price = product.Price.Value;
+                }
+                //have to put .Value to convert the nullable? price to an explicit non-nullable type 
+            }
+
             await _dbContext.SaveChangesAsync();
         }
-
-		//have use FirstOrDefault as this will only return one product
-		//if you use where, will return a list of products
     }
 }
 

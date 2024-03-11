@@ -25,16 +25,16 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IEnumerable<Product>> AddProducts(ProductRequest product)
+    public async Task<IEnumerable<Product>> AddProducts(AddProductRequest product)
     {
         var result = await _productHandler.AddProducts(product);
         return result;
     }
 
     [HttpPut]
-    public async Task<IEnumerable<Product>> EditProducts(string productName)
+    public async Task<IEnumerable<Product>> EditProducts(EditProductRequest product)
     {
-        var result = await _productHandler.EditProducts(productName);
+        var result = await _productHandler.EditProducts(product);
         return result;
     }
 

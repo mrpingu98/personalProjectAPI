@@ -1,7 +1,7 @@
 ﻿using System;
 namespace personalProjectAPI.RequestsResponses
 {
-	public class ProductRequest
+	public class AddProductRequest
 	{
         public required string Name { get; set; }
 
