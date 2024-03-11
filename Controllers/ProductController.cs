@@ -31,4 +31,11 @@ public class ProductController : ControllerBase
         return result;
     }
 
+    [HttpPut]
+    public async Task<IEnumerable<Product>> EditProducts(string productName)
+    {
+        var result = await _productHandler.EditProducts(productName);
+        return result;
+    }
+
 }

@@ -31,6 +31,15 @@ namespace personalProjectAPI.Handlers
 			return allProducts; 
 		}
 
+        public async Task<IEnumerable<Product>> EditProducts(string productName)
+        {
+            await _productRepository.EditProducts(productName);
+
+            var allProducts = await GetAllProducts();
+
+            return allProducts;
+        }
+
     }
 }
 

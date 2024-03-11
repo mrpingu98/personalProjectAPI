@@ -36,6 +36,18 @@ namespace personalProjectAPI.Repositories
 			await _dbContext.SaveChangesAsync();
         }
 
+        public async Task EditProducts(string productName)
+        {
+            var productToUpdate = _dbContext.Product.FirstOrDefault(product => product.Name == productName);
+			if (productToUpdate != null)
+			{
+                productToUpdate.Name = "testingPut";
+			}
+            await _dbContext.SaveChangesAsync();
+        }
+
+		//have use FirstOrDefault as this will only return one product
+		//if you use where, will return a list of products
     }
 }
 

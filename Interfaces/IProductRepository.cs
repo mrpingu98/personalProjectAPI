@@ -8,6 +8,7 @@ namespace personalProjectAPI.Interfaces
 	{
 		Task<IEnumerable<Product>> GetAllProducts();
         Task AddProducts(ProductRequest product);
+        Task EditProducts(string productName);
     }
 }
 
