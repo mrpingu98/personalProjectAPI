@@ -32,5 +32,3 @@ public class ProductController : ControllerBase
     }
 
 }
-
-//might need to change price to a float not an int
