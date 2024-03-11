@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using personalProjectAPI.Db;
 using personalProjectAPI.Domains;
 using personalProjectAPI.Interfaces;
+using personalProjectAPI.RequestsResponses;
 
 namespace personalProjectAPI.Repositories
 {
@@ -15,7 +16,26 @@ namespace personalProjectAPI.Repositories
 			_dbContext = dbContext;
 		}
 
-		public IEnumerable<Product> GetAllProducts => _dbContext.Product;
-	}
+		public async Task<IEnumerable<Product>> GetAllProducts()
+		{
+			var result = await _dbContext.Product.ToListAsync();
+
+			return result; 
+        }
+
+        public async Task AddProducts(ProductRequest productRequest)
+        {
+			var product = new Product
+			{
+				Name = productRequest.Name,
+				Description = productRequest.Description,
+				Price = productRequest.Price
+			};
+
+			_dbContext.Product.Add(product);
+			await _dbContext.SaveChangesAsync();
+        }
+
+    }
 }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using personalProjectAPI.Domains;
 using personalProjectAPI.Interfaces;
+using personalProjectAPI.RequestsResponses;
 
 namespace personalProjectAPI.Handlers
 {
@@ -13,7 +14,24 @@ namespace personalProjectAPI.Handlers
 			_productRepository = productRepository;
 		}
 
-        public IEnumerable<Product> GetAllProducts =>_productRepository.GetAllProducts;
+        public async Task<IEnumerable<Product>> GetAllProducts()
+		{
+            var result = await _productRepository.GetAllProducts();
+
+			return result;
+
+        }
+
+		public async Task<IEnumerable<Product>> AddProducts(ProductRequest product)
+		{
+			await _productRepository.AddProducts(product);
+
+			var allProducts = await GetAllProducts();
+
+			return allProducts; 
+		}
+
     }
 }
 
+//we just await the method call to the repo as nothing is returned - don't need to assign it to a variable
