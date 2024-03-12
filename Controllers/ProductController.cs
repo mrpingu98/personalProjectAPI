@@ -31,10 +31,9 @@ public class ProductController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<IEnumerable<Product>> EditProducts(EditProductRequest product)
+    public async Task EditProducts(EditProductRequest product)
     {
-        var result = await _productHandler.EditProducts(product);
-        return result;
+        await _productHandler.EditProducts(product);
     }
 
 }

@@ -17,9 +17,7 @@ namespace personalProjectAPI.Handlers
         public async Task<IEnumerable<Product>> GetAllProducts()
 		{
             var result = await _productRepository.GetAllProducts();
-
 			return result;
-
         }
 
 		public async Task AddProducts(AddProductRequest product)
@@ -27,13 +25,9 @@ namespace personalProjectAPI.Handlers
 			await _productRepository.AddProducts(product);
 		}
 
-        public async Task<IEnumerable<Product>> EditProducts(EditProductRequest product)
+        public async Task EditProducts(EditProductRequest product)
         {
             await _productRepository.EditProducts(product);
-
-            var allProducts = await GetAllProducts();
-
-            return allProducts;
         }
 
     }
