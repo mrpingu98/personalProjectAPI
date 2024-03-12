@@ -22,13 +22,9 @@ namespace personalProjectAPI.Handlers
 
         }
 
-		public async Task<IEnumerable<Product>> AddProducts(AddProductRequest product)
+		public async Task AddProducts(AddProductRequest product)
 		{
 			await _productRepository.AddProducts(product);
-
-			var allProducts = await GetAllProducts();
-
-			return allProducts; 
 		}
 
         public async Task<IEnumerable<Product>> EditProducts(EditProductRequest product)
