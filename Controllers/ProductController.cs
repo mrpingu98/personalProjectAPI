@@ -36,4 +36,11 @@ public class ProductController : ControllerBase
         await _productHandler.EditProducts(product);
     }
 
+    [HttpDelete]
+    public async Task DeleteProducts(string name)
+    {
+        await _productHandler.DeleteProducts(name);
+    }
+
+
 }
