@@ -37,9 +37,9 @@ public class ProductController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task DeleteProducts(string name)
+    public async Task DeleteProducts(DeleteProductRequest product)
     {
-        await _productHandler.DeleteProducts(name);
+        await _productHandler.DeleteProducts(product);
     }
 
 

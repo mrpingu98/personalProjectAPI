@@ -68,9 +68,9 @@ namespace personalProjectAPI.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteProducts(string name)
+        public async Task DeleteProducts(DeleteProductRequest product)
         {
-            var productToDelete = _dbContext.Product.FirstOrDefault(item => item.Name == name);
+            var productToDelete = _dbContext.Product.FirstOrDefault(item => item.Name == product.Name);
 
             if (productToDelete != null)
             {

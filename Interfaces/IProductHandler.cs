@@ -9,7 +9,7 @@ namespace personalProjectAPI.Interfaces
 		Task<IEnumerable<Product>> GetAllProducts();
         Task AddProducts(AddProductRequest product);
         Task EditProducts(EditProductRequest productName);
-        Task DeleteProducts(string name);
+        Task DeleteProducts(DeleteProductRequest product);
     }
 }
 

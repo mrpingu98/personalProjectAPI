@@ -30,9 +30,9 @@ namespace personalProjectAPI.Handlers
             await _productRepository.EditProducts(product);
         }
 
-		public async Task DeleteProducts(string name)
+		public async Task DeleteProducts(DeleteProductRequest product)
 		{
-			await _productRepository.DeleteProducts(name);
+			await _productRepository.DeleteProducts(product);
 		}
 
     }
