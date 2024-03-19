@@ -17,18 +17,22 @@ namespace personalProjectAPI.Handlers
         public async Task<IEnumerable<Product>> GetAllProducts()
 		{
             var result = await _productRepository.GetAllProducts();
-
 			return result;
-
         }
 
-		public async Task<IEnumerable<Product>> AddProducts(ProductRequest product)
+		public async Task AddProducts(AddProductRequest product)
 		{
 			await _productRepository.AddProducts(product);
+		}
 
-			var allProducts = await GetAllProducts();
+        public async Task EditProducts(EditProductRequest product)
+        {
+            await _productRepository.EditProducts(product);
+        }
 
-			return allProducts; 
+		public async Task DeleteProducts(DeleteProductRequest product)
+		{
+			await _productRepository.DeleteProducts(product);
 		}
 
     }

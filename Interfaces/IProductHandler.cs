@@ -7,7 +7,9 @@ namespace personalProjectAPI.Interfaces
 	public interface IProductHandler
 	{
 		Task<IEnumerable<Product>> GetAllProducts();
-        Task<IEnumerable<Product>> AddProducts(ProductRequest product);
+        Task AddProducts(AddProductRequest product);
+        Task EditProducts(EditProductRequest productName);
+        Task DeleteProducts(DeleteProductRequest product);
     }
 }
 
