@@ -29,7 +29,7 @@ else
 {
     builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
     options.UseMySQL(
-        builder.Configuration["ConnectionStrings:LocalDbContextConnection"])
+        builder.Configuration["ConnectionStrings:ProductionDbContextConnection"])
         );
 } 
 
