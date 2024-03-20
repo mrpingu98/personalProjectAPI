@@ -18,22 +18,29 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductHandler, ProductHandler>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-if (builder.Environment.IsDevelopment())
-{
-    builder.Services.AddDbContext<PersonalProjectDbContext>(options => {
-        options.UseSqlite(
-        builder.Configuration["ConnectionStrings:LocalDbContextConnection"]);
-    });
-}
-else
-{
-    builder.Services.AddDbContext<PersonalProjectDbContext>(options => {
-        options.UseMySQL(
-            //builder.Configuration["ConnectionStrings:ProductionDbContextConnection"]
-            "Database=p3rsonalprojectapi-database;Server=p3rsonalprojectapi-server.mysql.database.azure.com;User Id=gumxlrzbqq;Password=S08VBJW17FHMR55B$"
-            );
-        });
-}
+//if (builder.Environment.IsDevelopment())
+//{
+//    builder.Services.AddDbContext<PersonalProjectDbContext>(options => {
+//        options.UseSqlite(
+//        builder.Configuration["ConnectionStrings:LocalDbContextConnection"]);
+//    });
+//}
+//else
+//{
+//    builder.Services.AddDbContext<PersonalProjectDbContext>(options => {
+//        options.UseMySQL(
+//            //builder.Configuration["ConnectionStrings:ProductionDbContextConnection"]
+//            "Database=p3rsonalprojectapi-database;Server=p3rsonalprojectapi-server.mysql.database.azure.com;User Id=gumxlrzbqq;Password=S08VBJW17FHMR55B$"
+//            );
+//        });
+//}
+
+builder.Services.AddDbContext<PersonalProjectDbContext>(options => {
+    options.UseMySQL(
+        //builder.Configuration["ConnectionStrings:ProductionDbContextConnection"]
+        "Database=p3rsonalprojectapi-database;Server=p3rsonalprojectapi-server.mysql.database.azure.com;User Id=gumxlrzbqq;Password=S08VBJW17FHMR55B$"
+        );
+});
 
 var app = builder.Build();
 
