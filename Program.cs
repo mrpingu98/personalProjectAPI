@@ -27,12 +27,13 @@ if (builder.Environment.IsDevelopment())
 }
 else
 {
-    builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
-    options.UseMySQL(
-        builder.Configuration["ConnectionStrings:ProductionDbContextConnection"])
-        );
-} 
-
+    builder.Services.AddDbContext<PersonalProjectDbContext>(options => {
+        options.UseMySQL(
+            //builder.Configuration["ConnectionStrings:ProductionDbContextConnection"]
+            "Database=p3rsonalprojectapi-database;Server=p3rsonalprojectapi-server.mysql.database.azure.com;User Id=gumxlrzbqq;Password=S08VBJW17FHMR55B$"
+            );
+        });
+}
 
 var app = builder.Build();
 
@@ -42,11 +43,11 @@ app.UseCors(options =>
 });
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 app.UseHttpsRedirection();
 
@@ -55,6 +56,11 @@ app.UseAuthorization();
 app.MapControllers();
 
 DbInitialiser.Seed(app);
+
+var loggers = app.Services.GetRequiredService<ILogger<Program>>();
+
+// Log a message at application startup
+loggers.LogInformation("Application started.");
 
 app.Run();
 
