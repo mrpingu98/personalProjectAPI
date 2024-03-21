@@ -9,7 +9,11 @@ using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
+// Add logging configuration
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -73,7 +77,9 @@ app.MapControllers();
 
 DbInitialiser.Seed(app);
 
-var loggers = app.Services.GetRequiredService<ILogger<Program>>();
+var loggerFactory = app.Services.GetRequiredService<ILoggerFactory>();
+var loggers = loggerFactory.CreateLogger<Program>();
+
 
 // Log a message at application startup
 loggers.LogInformation("Application started.");
