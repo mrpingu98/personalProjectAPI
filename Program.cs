@@ -18,6 +18,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductHandler, ProductHandler>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
+IConfigurationRoot configuration = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+// Get connection string from appsettings.json
+string connectionString = configuration.GetConnectionString("DefaultConnection");
+
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
@@ -30,9 +38,7 @@ else
 {
     builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
     {
-        options.UseSqlServer(
-            builder.Configuration["ConnectionStrings:ProductionDbContextConnection"]
-            );
+        options.UseSqlServer("Server=tcp:personalproject123.database.windows.net,1433;Initial Catalog=personalproject;Persist Security Info=False;User ID=admin@123@personalproject123;Password=Password@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
     });
 }
 //add whatever setting is needed for sqlserver connection string
