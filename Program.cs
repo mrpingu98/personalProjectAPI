@@ -30,9 +30,8 @@ else
 {
     builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
     {
-        options.s(
+        options.UseSqlServer(
             builder.Configuration["ConnectionStrings:ProductionDbContextConnection"]
-            //"Database=p3rsonalprojectapi-database;Server=p3rsonalprojectapi-server.mysql.database.azure.com;User Id=gumxlrzbqq;Password=S08VBJW17FHMR55B$"
             );
     });
 }
