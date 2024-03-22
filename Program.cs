@@ -1,8 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MySql;
+using Microsoft.Extensions.Options;
 using personalProjectAPI.Db;
 using personalProjectAPI.Handlers;
 using personalProjectAPI.Interfaces;
 using personalProjectAPI.Repositories;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +17,39 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductHandler, ProductHandler>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddDbContext<PersonalProjectDbContext>(options => {
-    options.UseSqlite(
-    builder.Configuration["ConnectionStrings:PersonalProjectDbContextConnection"]);
-});
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
+    {
+        options.UseSqlite(
+        builder.Configuration["ConnectionStrings:LocalDbContextConnection"]);
+    });
+}
+else
+{
+    builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
+    {
+        options.UseSqlServer(
+            builder.Configuration["ConnectionStrings:ProductionDbContextConnection"]
+            );
+    });
+}
+//add whatever setting is needed for sqlserver connection string
+//maybe set up another api app on the basic free plan 
+
+//var connectionString = builder.Configuration.GetConnectionString("ProductionDbContextConnection");
+//builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
+//{
+//    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+//});
+
+//builder.Services.AddDbContext<PersonalProjectDbContext>(options => {
+//    options.UseMySQL(
+//        //builder.Configuration["ConnectionStrings:ProductionDbContextConnection"]
+//        "Database=p3rsonalprojectapi-database;Server=p3rsonalprojectapi-server.mysql.database.azure.com;User Id=gumxlrzbqq;Password=S08VBJW17FHMR55B$"
+//        );
+//});
 
 var app = builder.Build();
 
@@ -40,6 +72,11 @@ app.UseAuthorization();
 app.MapControllers();
 
 DbInitialiser.Seed(app);
+
+var loggers = app.Services.GetRequiredService<ILogger<Program>>();
+
+// Log a message at application startup
+loggers.LogInformation("Application started.");
 
 app.Run();
 
