@@ -18,30 +18,32 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductHandler, ProductHandler>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-//if (builder.Environment.IsDevelopment())
-//{
-//    builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
-//    {
-//        options.UseSqlite(
-//        builder.Configuration["ConnectionStrings:LocalDbContextConnection"]);
-//    });
-//}
-//else
-//{
-//    builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
-//    {
-//        options.UseMySQL(
-//            builder.Configuration["ConnectionStrings:ProductionDbContextConnection"]
-//            //"Database=p3rsonalprojectapi-database;Server=p3rsonalprojectapi-server.mysql.database.azure.com;User Id=gumxlrzbqq;Password=S08VBJW17FHMR55B$"
-//            );
-//    });
-//}
-
-var connectionString = builder.Configuration.GetConnectionString("ProductionDbContextConnection");
-builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
+if (builder.Environment.IsDevelopment())
 {
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-});
+    builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
+    {
+        options.UseSqlite(
+        builder.Configuration["ConnectionStrings:LocalDbContextConnection"]);
+    });
+}
+else
+{
+    builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
+    {
+        options.s(
+            builder.Configuration["ConnectionStrings:ProductionDbContextConnection"]
+            //"Database=p3rsonalprojectapi-database;Server=p3rsonalprojectapi-server.mysql.database.azure.com;User Id=gumxlrzbqq;Password=S08VBJW17FHMR55B$"
+            );
+    });
+}
+//add whatever setting is needed for sqlserver connection string
+//maybe set up another api app on the basic free plan 
+
+//var connectionString = builder.Configuration.GetConnectionString("ProductionDbContextConnection");
+//builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
+//{
+//    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+//});
 
 //builder.Services.AddDbContext<PersonalProjectDbContext>(options => {
 //    options.UseMySQL(
