@@ -6,7 +6,7 @@ using personalProjectAPI.RequestsResponses;
 namespace personalProjectAPI.Controllers;
 
 [ApiController]
-[Route("/product")]
+[Route("/product/[action]")]
 public class ProductController : ControllerBase
 {
     private readonly IProductHandler _productHandler;
@@ -17,7 +17,7 @@ public class ProductController : ControllerBase
     }
 
    
-    [HttpGet]
+    [HttpGet("get")]
     public async Task<IEnumerable<Product>> GetAllProducts()
     {
         var result = await _productHandler.GetAllProducts();
