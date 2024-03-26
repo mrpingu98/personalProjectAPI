@@ -17,7 +17,7 @@ public class ProductController : ControllerBase
     }
 
    
-    [HttpGet("get")]
+    [HttpGet]
     public async Task<IEnumerable<Product>> GetAllProducts()
     {
         var result = await _productHandler.GetAllProducts();
