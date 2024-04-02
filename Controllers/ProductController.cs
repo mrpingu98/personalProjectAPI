@@ -6,7 +6,7 @@ using personalProjectAPI.RequestsResponses;
 namespace personalProjectAPI.Controllers;
 
 [ApiController]
-[Route("/product/[action]")]
+[Route("/product")]
 public class ProductController : ControllerBase
 {
     private readonly IProductHandler _productHandler;
