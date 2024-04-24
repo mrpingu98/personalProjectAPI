@@ -32,6 +32,7 @@
     <None Remove="Repositories\" />
     <None Remove="Interfaces\" />
     <None Remove="RequestsResponses\" />
+    <None Remove="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domains\" />
@@ -40,5 +41,6 @@
     <Folder Include="Repositories\" />
     <Folder Include="Interfaces\" />
     <Folder Include="RequestsResponses\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
 </Project>

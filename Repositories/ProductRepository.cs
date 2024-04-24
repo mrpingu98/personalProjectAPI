@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using personalProjectAPI.Db;
 using personalProjectAPI.Domains;
@@ -18,10 +19,19 @@ namespace personalProjectAPI.Repositories
 
 		public async Task<IEnumerable<Product>> GetAllProducts()
 		{
-			var result = await _dbContext.Product.ToListAsync();
+			var products = await _dbContext.Product.ToListAsync();
 
-			return result; 
+			return products; 
         }
+
+
+        public async Task<Product?> GetProduct(string name)
+        {
+           var product = await _dbContext.Product.FirstOrDefaultAsync(item => item.Name == name);
+
+            return product;
+        }
+
 
         public async Task AddProducts(AddProductRequest product)
         {
@@ -62,10 +72,9 @@ namespace personalProjectAPI.Repositories
                 {
                     productToUpdate.Price = product.Price.Value;
                 }
-                //have to put .Value to convert the nullable? price to an explicit non-nullable type 
+                //have to put .Value to convert the nullable? price to an explicit non-nullable type
             }
-
-            await _dbContext.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteProducts(DeleteProductRequest product)
