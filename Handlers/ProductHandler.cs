@@ -32,7 +32,7 @@ namespace personalProjectAPI.Handlers
 
         public async Task AddProducts(AddProductRequest product)
 		{
-			if(product.Name == "" && product.Price == 0 && product.Description == "")
+			if(product.Name == "" || product.Price == 0 || product.Description == "")
 			{
 				throw new InvalidArgumentException("Must input required information for a new product");
 			}
@@ -50,6 +50,7 @@ namespace personalProjectAPI.Handlers
 			//if product already exists
 			//if name desciption and price are empty 
 		}
+        //if price is null
 
 
         public async Task EditProducts(EditProductRequest product)
