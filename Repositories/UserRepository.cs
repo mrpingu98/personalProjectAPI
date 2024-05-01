@@ -17,6 +17,13 @@ namespace personalProjectAPI.Repositories
             _dbContext = dbContext;
         }
 
+        public async Task<User?> GetUser(string userName, string password)
+        {
+            var user = await _dbContext.User.FirstOrDefaultAsync(item => (item.UserName == userName) && (item.Password == password));
+
+            return user;
+        }
+
         public async Task AddUser(AddUserRequest user)
 		{
             var newUser = new User

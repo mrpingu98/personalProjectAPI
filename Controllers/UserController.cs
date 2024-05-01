@@ -20,6 +20,21 @@ namespace personalProjectAPI.Controllers
             _userHandler = userHandler;
 		}
 
+        [HttpGet]
+        public async Task<User?> GetUser(string userName, string password)
+        {
+                var result = await _userHandler.GetUser(userName, password);
+            if(result == null)
+            {
+                return null;
+            }
+            else
+            {
+                return result;
+            }
+          
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddUser(AddUserRequest user)
         {
