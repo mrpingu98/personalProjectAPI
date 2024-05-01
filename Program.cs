@@ -16,6 +16,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductHandler, ProductHandler>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IUserHandler, UserHandler>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 if (builder.Environment.IsDevelopment())
 {
