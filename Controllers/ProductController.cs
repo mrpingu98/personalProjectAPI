@@ -16,7 +16,6 @@ public class ProductController : ControllerBase
     {
         _productHandler = productHandler;
     }
-
    
     [HttpGet]
     public async Task<IEnumerable<Product>> GetAllProducts()
