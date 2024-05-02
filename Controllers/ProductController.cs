@@ -16,9 +16,6 @@ public class ProductController : ControllerBase
     {
         _productHandler = productHandler;
     }
-//test with LF
-    //test
-    //test2
    
     [HttpGet]
     public async Task<IEnumerable<Product>> GetAllProducts()
