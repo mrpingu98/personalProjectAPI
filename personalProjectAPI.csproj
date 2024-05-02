@@ -1,46 +1,47 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
-    <PackageReference Include="MySql.Data" Version="8.1.0" />
-    <PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.0" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
-  </ItemGroup>
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+        <PackageReference Include="MySql.Data" Version="8.1.0" />
+        <PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.0" />
+        <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Domains\" />
-    <None Remove="DbContext\" />
-    <None Remove="Handlers\" />
-    <None Remove="Repositories\" />
-    <None Remove="Interfaces\" />
-    <None Remove="RequestsResponses\" />
-    <None Remove="Exceptions\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Domains\" />
-    <Folder Include="DbContext\" />
-    <Folder Include="Handlers\" />
-    <Folder Include="Repositories\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="RequestsResponses\" />
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
+    <ItemGroup>
+        <None Remove="Domains\" />
+        <None Remove="DbContext\" />
+        <None Remove="Handlers\" />
+        <None Remove="Repositories\" />
+        <None Remove="Interfaces\" />
+        <None Remove="RequestsResponses\" />
+        <None Remove="Exceptions\" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Domains\" />
+        <Folder Include="DbContext\" />
+        <Folder Include="Handlers\" />
+        <Folder Include="Repositories\" />
+        <Folder Include="Interfaces\" />
+        <Folder Include="RequestsResponses\" />
+        <Folder Include="Exceptions\" />
+    </ItemGroup>
 </Project>
+
