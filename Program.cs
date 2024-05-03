@@ -26,14 +26,12 @@ if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDbContext<PersonalProjectDbContext>(options =>
     {
-        options.UseSqlite(
-        builder.Configuration["ConnectionStrings:LocalDbContextConnection"]);
+        options.UseSqlServer("Server=localhost;Database=PersonalProjectDb;User Id=sa;Password=Jim-biscuits-Rat;TrustServerCertificate=True");
     });
     
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
     {
-        options.UseSqlite(
-            builder.Configuration["ConnectionStrings:LocalDbContextConnection"]);
+        options.UseSqlServer("Server=localhost;Database=PersonalProjectDb;User Id=sa;Password=Jim-biscuits-Rat;TrustServerCertificate=True");
     });
 }
 else
