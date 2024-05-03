@@ -15,5 +15,7 @@ namespace personalProjectAPI.Db
         public DbSet<User> User { get; set; }
         
         public DbSet<AspNetUsers> AspNetUsers { get; set; }
+        
+        public DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
     }
 }
