@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using personalProjectAPI.Domains;
 using personalProjectAPI.Exceptions;
 using personalProjectAPI.Interfaces;
@@ -17,14 +18,19 @@ public class ProductController : ControllerBase
         _productHandler = productHandler;
     }
 
-   
+
     [HttpGet]
     public async Task<IEnumerable<Product>> GetAllProducts()
     {
         var result = await _productHandler.GetAllProducts();
-        return result;
+      
+            return result;
+   
+       
+   
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> AddProducts(AddProductRequest product)
     {
