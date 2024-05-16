@@ -23,11 +23,8 @@ public class ProductController : ControllerBase
     public async Task<IEnumerable<Product>> GetAllProducts()
     {
         var result = await _productHandler.GetAllProducts();
-      
-            return result;
-   
-       
-   
+
+        return result;
     }
 
     [Authorize]
@@ -54,6 +51,7 @@ public class ProductController : ControllerBase
             
     }
 
+    [Authorize]
     [HttpPut]
     public async Task<IActionResult> EditProducts(EditProductRequest product)
     {
@@ -79,6 +77,7 @@ public class ProductController : ControllerBase
         //something to do with JSON not being able to serialise the object and return it 
     }
 
+    [Authorize]
     [HttpDelete]
     public async Task<IActionResult> DeleteProducts(DeleteProductRequest product)
     {
