@@ -52,5 +52,39 @@ INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
 VALUES (N'20240311135254_ImageUrlAndPriceUpdate', N'7.0.2');
 GO
 
+
+
+**UserTableAdded script**
+
+BEGIN TRANSACTION;
+GO
+
+
+CREATE TABLE [User] (
+   [Id] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(),
+   [UserName] NVARCHAR(MAX) NOT NULL,
+   [Name] NVARCHAR(MAX) NOT NULL,
+   [Email] NVARCHAR(MAX) NOT NULL,
+   [Password] NVARCHAR(MAX) NOT NULL,
+   CONSTRAINT [PK_User] PRIMARY KEY ([Id])
+);
+GO
+
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20240501132945_UserTableAdded', N'7.0.2');
+GO
+
+
+COMMIT;
+GO
+
+
+
+
+
+
+
+
 COMMIT;
 GO
